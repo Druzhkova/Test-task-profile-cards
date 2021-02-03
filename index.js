@@ -31,12 +31,10 @@ function renderCards() {
         </div>
       </div>
     `
-
+    
     container.innerHTML = container.innerHTML + card
   })
 }
-
-
 
 function renderSocialMedia(arr) {
   let socialHandle = '';
