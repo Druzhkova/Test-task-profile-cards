@@ -25,7 +25,6 @@ function renderCards() {
         <div class="cards-item-mediainfo">${renderSocialMedia(socialMedia)}</div>
       </li>
     `
-    
     container.innerHTML += card
   })
 }
@@ -38,11 +37,9 @@ function renderSocialMedia(arr) {
       <li class="cards-item-mediainfo-list__list-item">
         <div><img class="media-icon" src="./assets/icon-${value}.svg" alt="${value}"></div>
         <p>188.4M</p>
-      </li>
-     `
+      </li>`
      social += socialMediaData
   })
-
   return `<hr><ul class="cards-item-mediainfo-list">${social}</div>`       
 }
 
@@ -53,7 +50,6 @@ function renderPostsImg(arr) {
     const postsImgData = `<img class="cards-item-posts__img" src="./assets/posts/${img}" alt="">`
     posts += postsImgData
   })
-
   return posts         
 }
 
