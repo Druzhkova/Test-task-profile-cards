@@ -1,55 +1,64 @@
 import { usersData } from './data'
 
-const container = document.querySelector('.container');
+const container = document.querySelector('.cards-list');
 
 function renderCards() {
-  let postIndex = 1;
 
-  usersData.forEach((data, key) => {
-    const {fullName, gender, age, contentTopics, socialMedia} = data
+  usersData.forEach((data) => {
+    const {fullName, gender, age, contentTopics, socialMedia, images, avatar} = data
 
     const card = `
-      <div class="card">
-        <div class="posts">
-          <img class="post-img" src="./assets/posts/${postIndex++}.png" alt="">
-          <img class="post-img" src="./assets/posts/${postIndex++}.png" alt="">
-        </div>
-        <a class="link" href="#">
-          <div class="avatar">
-            <img class="avatar-img" src="./assets/avatars/${++key}.jpg" alt="">
+      <li class="cards-list__list-item">
+        <div class="cards-item-posts">${renderPostsImg(images)}</div>
+        <div class="cards-item-profile">
+          <div class="cards-item-profile__avatar">
+            <img class="cards-item-profile__avatar-img" src="./assets/avatars/${avatar}" alt="">
           </div>
-          <div class="personal-data">
-            <h2 class="full-name">${fullName}</h2>
+          <div class="cards-item-profile__personal-data">
+            <h2 class="cards-item-profile__full-name">${fullName}</h2>
             <div>
-              <span class="gender">${gender}</span><span class="age">${age ? `, ${age}` : ''}</span>
+              <span class="cards-item-profile__gender">${gender}</span><span class="cards-item-profile__age">${age ? `, ${age}` : ''}</span>
             </div>
-            <p class="content-topics">${contentTopics}</p>
+            <p class="cards-item-profile__content-topics">${renderContentTopics(contentTopics)}</p>
           </div>
-          <hr>
-        </a>
-        <div class="social-handle">${renderSocialMedia(socialMedia)}
         </div>
-      </div>
+        <div class="cards-item-mediainfo">${renderSocialMedia(socialMedia)}</div>
+      </li>
     `
     
-    container.innerHTML = container.innerHTML + card
+    container.innerHTML += card
   })
 }
 
 function renderSocialMedia(arr) {
-  let socialHandle = '';
+  let social = ``
 
   arr.forEach((value) => {
      const socialMediaData = `
-       <div class="handle">
-         <img class="social-icon" src="./assets/icon-${value}.svg" alt="${value}">
-         <p>188.4M</p>
-       </div>
+      <li class="cards-item-mediainfo-list__list-item">
+        <div><img class="media-icon" src="./assets/icon-${value}.svg" alt="${value}"></div>
+        <p>188.4M</p>
+      </li>
      `
-     socialHandle += socialMediaData
+     social += socialMediaData
   })
 
-  return socialHandle
+  return `<hr><ul class="cards-item-mediainfo-list">${social}</div>`       
+}
+
+function renderPostsImg(arr) {
+  let posts = ``
+
+  arr.forEach((img) => {
+    const postsImgData = `<img class="cards-item-posts__img" src="./assets/posts/${img}" alt="">`
+    posts += postsImgData
+  })
+
+  return posts         
+}
+
+function renderContentTopics(arr) {
+  return arr.join(', ').replace(/,([^,]*)$/," &$1")       
 }
 
 renderCards()
