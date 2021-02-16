@@ -40,7 +40,7 @@ function renderSocialMedia(arr) {
       </li>`
      social += socialMediaData
   })
-  return `<hr><ul class="cards-item-mediainfo-list">${social}</div>`       
+  return `<ul class="cards-item-mediainfo-list">${social}</ul>`       
 }
 
 function renderPostsImg(arr) {
